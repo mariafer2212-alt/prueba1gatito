@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Michi Kawaii - Veni a pasar una tarde diferente</title>
+
+    <!-- Google Fonts: Fredoka -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-bg: #F0D5F1;
+            --secondary-bg: #C19FD5;
+            --y2k-pink: #FFB7E7;
+            --y2k-cyan: #AEE2FF;
+            --y2k-purple: #7C3AED;
+            --y2k-dark-purple: #3B1C63;
+            --text-color: #2D1B4E;
+            --chrome-gradient: linear-gradient(135deg, #FFFFFF 0%, #E8E8E8 25%, #9E9E9E 50%, #FFFFFF 75%, #C2C2C2 100%);
+            --glossy-overlay: linear-gradient(180deg, rgba(255,255,255,0.75) 0%, rgba(255,255,255,0.15) 48%, rgba(0,0,0,0.05) 50%, rgba(255,255,255,0.35) 100%);
+            --y2k-card-shadow: 0 12px 32px rgba(124, 58, 237, 0.28), 0 2px 6px rgba(255, 255, 255, 0.8) inset;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Fredoka', -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            color: var(--text-color);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 24px 16px 100px 16px;
+            position: relative;
+            overflow-x: hidden;
+            /* Photography background of real Sakura blossoms with white/pastel translucency for clear readability */
+            background-image: linear-gradient(rgba(255, 255, 255, 0.72), rgba(240, 213, 241, 0.78)), 
+                              url('https://images.unsplash.com/photo-1522383225653-ed111181a951?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+        }
+
+        /* Y2K Ambient Floating Sparkles */
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            user-select: none;
+            animation: float-sparkle 3s infinite ease-in-out alternate;
+            font-size: 1.4rem;
+            z-index: 1;
+        }
+
+        @keyframes float-sparkle {
+            0% { transform: scale(0.85) translateY(0) rotate(0deg); opacity: 0.7; }
+            100% { transform: scale(1.3) translateY(-10px) rotate(25deg); opacity: 1; }
+        }
+
+        /* Main Container Layout */
+        .main-container {
+            width: 100%;
+            max-width: 480px;
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            gap: 22px;
+        }
+
+        /* Header / Hero Card */
+        .hero-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(240, 213, 241, 0.96));
+            border: 4px solid #FFFFFF;
+            outline: 2px solid var(--secondary-bg);
+            border-radius: 32px;
+            box-shadow: var(--y2k-card-shadow);
+            padding: 28px 20px 24px 20px;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            backdrop-filter: blur(12px);
+        }
+
+        .profile-pic-container {
+            width: 135px;
+            height: 135px;
+            border-radius: 50%;
+            padding: 6px;
+            background: linear-gradient(145deg, #FFFFFF, #E2C2ED, #AEE2FF, #FFFFFF);
+            box-shadow: 0 0 22px rgba(212, 139, 213, 0.85), inset 0 2px 5px rgba(255,255,255,0.9);
+            margin-bottom: 18px;
+            position: relative;
+        }
+
+        .profile-pic-container::after {
+            content: '✨';
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            font-size: 1.7rem;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+        }
+
+        .profile-pic {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #FFFFFF;
+            display: block;
+            background-color: var(--secondary-bg);
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(180deg, #6D28D9 0%, #D48BD5 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0px 2px 0px #FFFFFF);
+            letter-spacing: -0.5px;
+            margin-bottom: 10px;
+        }
+
+        .hero-subtitle-badge {
+            background: linear-gradient(180deg, #AEE2FF 0%, #89CFF0 100%);
+            border: 2px solid #FFFFFF;
+            color: #1E3A8A;
+            padding: 9px 20px;
+            border-radius: 22px;
+            font-size: 0.98rem;
+            font-weight: 600;
+            box-shadow: 0 4px 14px rgba(174, 226, 255, 0.65), inset 0 1px 2px #FFFFFF;
+            display: inline-block;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-subtitle-badge::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            border-radius: 20px 20px 0 0;
+        }
+
+        .carousel-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(235, 221, 243, 0.95));
+            border: 3.5px solid #FFFFFF;
+            border-radius: 28px;
+            box-shadow: var(--y2k-card-shadow);
+            padding: 18px;
+            backdrop-filter: blur(10px);
+        }
+
+        .carousel-title {
+            text-align: center;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--y2k-purple);
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            text-shadow: 0 1px 0 #FFFFFF;
+        }
+
+        .carousel-viewport {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 4 / 3;
+            border-radius: 20px;
+            overflow: hidden;
+            border: 3px solid #FFFFFF;
+            box-shadow: 0 6px 18px rgba(124, 58, 237, 0.2), inset 0 0 10px rgba(0,0,0,0.03);
+            background-color: #F8EEFC;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 300%;
+            height: 100%;
+            transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .carousel-slide {
+            width: 33.333%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, #F0D5F1, #EBDDF3);
+        }
+
+        /* Real Kitten photos with balanced object-fit to show full adorable kittens without awkward crops */
+        .carousel-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            border-radius: 17px;
+        }
+
+        .carousel-nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 42px;
+            height: 42px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #E2C2ED 100%);
+            border: 2px solid #FFFFFF;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--y2k-purple);
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2), inset 0 1px 2px #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 5;
+            transition: transform 0.15s ease, background 0.2s ease;
+        }
+
+        .carousel-nav-btn:active {
+            transform: translateY(-50%) scale(0.92);
+        }
+
+        .carousel-nav-btn.prev { left: 10px; }
+        .carousel-nav-btn.next { right: 10px; }
+
+        .carousel-indicators {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 14px;
+        }
+
+        .indicator-dot {
+            width: 12px;
+            height: 12px;
+            background-color: #FFFFFF;
+            border: 2px solid var(--secondary-bg);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator-dot.active {
+            background: var(--y2k-purple);
+            transform: scale(1.3);
+            box-shadow: 0 0 10px var(--y2k-pink);
+            border-color: #FFFFFF;
+        }
+
+        .accordion-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .accordion-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.94), rgba(240, 213, 241, 0.92));
+            border: 3px solid #FFFFFF;
+            border-radius: 22px;
+            box-shadow: var(--y2k-card-shadow);
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .accordion-btn {
+            width: 100%;
+            padding: 16px 20px;
+            background: linear-gradient(180deg, rgba(255,255,255,0.92) 0%, rgba(226, 194, 237, 0.75) 100%);
+            border: none;
+            outline: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-color);
+            cursor: pointer;
+            text-align: left;
+            position: relative;
+        }
+
+        .accordion-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(180deg, #FFFFFF 0%, #AEE2FF 100%);
+            border: 2px solid #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--y2k-purple);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12), inset 0 1px 2px #FFFFFF;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), background 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .accordion-card.open .accordion-icon {
+            transform: rotate(45deg);
+            background: linear-gradient(180deg, #FFB7E7 0%, #D48BD5 100%);
+            color: #FFFFFF;
+        }
+
+        /* Closed by default smooth expandable transition */
+        .accordion-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.38s ease, padding 0.38s ease;
+            padding: 0 20px;
+            font-size: 1rem;
+            line-height: 1.55;
+            color: #331A4D;
+            font-weight: 500;
+        }
+
+        .accordion-card.open .accordion-body {
+            max-height: 350px;
+            padding: 16px 20px 22px 20px;
+            border-top: 1.5px solid rgba(255, 255, 255, 0.85);
+        }
+
+        .info-badge-group {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+
+        .info-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+        }
+
+        .info-icon {
+            font-size: 1.1rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* Y2K Glossy Button for Google Maps */
+        .maps-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            width: 100%;
+            margin-top: 8px;
+            padding: 12px 20px;
+            background: linear-gradient(180deg, #FFB7E7 0%, #D48BD5 100%);
+            border: 2px solid #FFFFFF;
+            border-radius: 18px;
+            color: #FFFFFF;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.98rem;
+            box-shadow: 0 4px 14px rgba(212, 139, 213, 0.6), inset 0 1px 2px #FFFFFF;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            position: relative;
+            overflow: hidden;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+        }
+
+        .maps-button::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 45%;
+            background: rgba(255,255,255,0.45);
+            border-radius: 16px 16px 0 0;
+        }
+
+        .maps-button:active {
+            transform: scale(0.97);
+        }
+
+        .email-link {
+            color: var(--y2k-purple);
+            font-weight: 700;
+            text-decoration: underline;
+            word-break: break-all;
+        }
+
+        .floating-action-bar {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 100;
+        }
+
+        .action-btn {
+            width: 56px;
+            height: 56px;
+            border: 3px solid #FFFFFF;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            text-decoration: none;
+            cursor: pointer;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.22), inset 0 1px 2px #FFFFFF;
+            transition: transform 0.2s ease, opacity 0.3s ease, visibility 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .action-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; height: 50%;
+            background: rgba(255,255,255,0.45);
+            border-radius: 50% 50% 0 0;
+        }
+
+        .action-btn:active {
+            transform: scale(0.92);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(180deg, #25D366 0%, #128C7E 100%);
+            color: #FFFFFF;
+        }
+
+        .btn-top {
+            background: linear-gradient(180deg, #AEE2FF 0%, #89CFF0 100%);
+            color: #1E3A8A;
+            font-weight: 700;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .btn-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        footer {
+            margin-top: 14px;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--y2k-dark-purple);
+            text-shadow: 0 1px 0 rgba(255,255,255,0.9);
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Y2K Sparkles -->
+    <span class="sparkle" style="top: 25px; left: 10%;">✨</span>
+    <span class="sparkle" style="top: 80px; right: 8%;">💖</span>
+    <span class="sparkle" style="top: 290px; left: 5%;">🌸</span>
+    <span class="sparkle" style="top: 520px; right: 6%;">🎀</span>
+
+    <main class="main-container">
+
+        <!-- HERO SECTION -->
+        <section class="hero-card">
+            <div class="profile-pic-container">
+                <!-- Real kitten profile picture with soft lighting -->
+                <img src="https://images.unsplash.com/photo-1543852786-1cf6624b9987?auto=format&fit=crop&w=400&q=80" alt="Michi Kawaii Profile" class="profile-pic" onerror="this.src='https://placehold.co/200x200/F0D5F1/7C3AED?text=Michi+Kawaii'">
+            </div>
+
+            <h1 class="hero-title">Michi Kawaii</h1>
+            <span class="hero-subtitle-badge">Veni a pasar una tarde diferente</span>
+        </section>
+
+        <!-- CAROUSEL SECTION -->
+        <section class="carousel-card" id="carouselSection">
+            <div class="carousel-title">
+                <span>🎀</span> Gatitos Kawaii <span>✨</span>
+            </div>
+
+            <div class="carousel-viewport">
+                <button class="carousel-nav-btn prev" id="prevBtn" aria-label="Imagen anterior">❮</button>
+                <button class="carousel-nav-btn next" id="nextBtn" aria-label="Imagen siguiente">❯</button>
+
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- 3 Real Kitten Photographs in soft/pastel ambient lighting -->
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?auto=format&fit=crop&w=800&q=80" alt="Gatito tierno real 1" loading="lazy">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1573865526739-10659fec78a5?auto=format&fit=crop&w=800&q=80" alt="Gatito kawaii real 2" loading="lazy">
+                    </div>
+                    <div class="carousel-slide">
+                        <img src="https://images.unsplash.com/photo-1561948955-570b270e7c36?auto=format&fit=crop&w=800&q=80" alt="Gatito lindo real 3" loading="lazy">
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-indicators" id="carouselIndicators">
+                <span class="indicator-dot active" data-slide="0"></span>
+                <span class="indicator-dot" data-slide="1"></span>
+                <span class="indicator-dot" data-slide="2"></span>
+            </div>
+        </section>
+
+        <!-- ACCORDIONS SECTION (CLOSED BY DEFAULT) -->
+        <section class="accordion-list">
+
+            <!-- 1. Presentación -->
+            <div class="accordion-card">
+                <button class="accordion-btn" type="button">
+                    <span>Presentación</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                    <p>Te invito a compartir una tarde de merienda divertida con muchos gatitos. Podes venir con disfraz o atuendo kawaii de tu preferencia</p>
+                </div>
+            </div>
+
+            <!-- 2. Más info -->
+            <div class="accordion-card">
+                <button class="accordion-btn" type="button">
+                    <span>Más info</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                    <p>Soy Cata y hago meriendas tematicas. Este sabado la propuesta es oriental celebrando la primavera, disfrutando de los sakura y todo su color. Veni con amigos a partir de las 16hs, te espero en Roma 345 Capital Federal</p>
+                </div>
+            </div>
+
+            <!-- 3. Fecha y lugar -->
+            <div class="accordion-card">
+                <button class="accordion-btn" type="button">
+                    <span>Fecha y lugar</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                    <div class="info-badge-group">
+                        <div class="info-row">
+                            <span class="info-icon">📅</span>
+                            <span><strong>Fecha:</strong> Este sábado a partir de las 16:00 hs.</span>
+                        </div>
+                        <div class="info-row">
+                            <span class="info-icon">📍</span>
+                            <span><strong>Lugar:</strong> Roma 345, Capital Federal.</span>
+                        </div>
+                    </div>
+                    <a href="https://maps.google.com/?q=Roma+345+Capital+Federal" target="_blank" rel="noopener noreferrer" class="maps-button">
+                        🗺️ Ver en Google Maps ↗
+                    </a>
+                </div>
+            </div>
+
+            <!-- 4. Contacto -->
+            <div class="accordion-card">
+                <button class="accordion-btn" type="button">
+                    <span>Contacto</span>
+                    <span class="accordion-icon">+</span>
+                </button>
+                <div class="accordion-body">
+                    <p>Escribime para reservar tu lugar o hacerme cualquier consulta:</p>
+                    <p style="margin-top: 10px;">
+                        ✉️ <a href="mailto:catakawaii@cata.com" class="email-link">catakawaii@cata.com</a>
+                    </p>
+                </div>
+            </div>
+
+        </section>
+
+        <footer>
+            <p>🌸 Michi Kawaii • Roma 345 Capital Federal 🐾</p>
+        </footer>
+
+    </main>
+
+    <!-- FLOATING ACTION BUTTONS -->
+    <div class="floating-action-bar">
+        <button class="action-btn btn-top" id="scrollTopBtn" title="Volver arriba" aria-label="Volver arriba">
+            ▲
+        </button>
+        <!-- Reemplaza el número 5491100000000 por tu número con código de país -->
+        <a href="https://wa.me/5491100000000?text=Hola%20Cata!%20Quiero%20saber%20mas%20sobre%20el%20evento%20Michi%20Kawaii" class="action-btn btn-whatsapp" target="_blank" rel="noopener noreferrer" title="Enviar WhatsApp" aria-label="Contacto WhatsApp">
+            💬
+        </a>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+
+            /* Accordion logic - all closed by default */
+            const accordionBtns = document.querySelectorAll('.accordion-btn');
+
+            accordionBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const parentCard = btn.parentElement;
+                    const isOpen = parentCard.classList.contains('open');
+
+                    // Close any open accordion
+                    document.querySelectorAll('.accordion-card').forEach(card => {
+                        card.classList.remove('open');
+                    });
+
+                    // Toggle clicked accordion
+                    if (!isOpen) {
+                        parentCard.classList.add('open');
+                    }
+                });
+            });
+
+            /* Carousel Logic */
+            const track = document.getElementById('carouselTrack');
+            const dots = document.querySelectorAll('.indicator-dot');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const carouselSection = document.getElementById('carouselSection');
+
+            let currentSlide = 0;
+            const totalSlides = dots.length;
+            let slideInterval;
+
+            function updateCarousel(index) {
+                currentSlide = index;
+                if (currentSlide < 0) currentSlide = totalSlides - 1;
+                if (currentSlide >= totalSlides) currentSlide = 0;
+
+                track.style.transform = `translateX(-${currentSlide * (100 / totalSlides)}%)`;
+
+                dots.forEach((dot, idx) => {
+                    dot.classList.toggle('active', idx === currentSlide);
+                });
+            }
+
+            nextBtn.addEventListener('click', () => updateCarousel(currentSlide + 1));
+            prevBtn.addEventListener('click', () => updateCarousel(currentSlide - 1));
+
+            dots.forEach(dot => {
+                dot.addEventListener('click', (e) => {
+                    const slideIndex = parseInt(e.target.getAttribute('data-slide'));
+                    updateCarousel(slideIndex);
+                });
+            });
+
+            function startAutoplay() {
+                slideInterval = setInterval(() => {
+                    updateCarousel(currentSlide + 1);
+                }, 3500);
+            }
+
+            function stopAutoplay() {
+                clearInterval(slideInterval);
+            }
+
+            carouselSection.addEventListener('mouseenter', stopAutoplay);
+            carouselSection.addEventListener('mouseleave', startAutoplay);
+            carouselSection.addEventListener('touchstart', stopAutoplay, { passive: true });
+
+            startAutoplay();
+
+            /* Scroll To Top Logic */
+            const scrollTopBtn = document.getElementById('scrollTopBtn');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 220) {
+                    scrollTopBtn.classList.add('visible');
+                } else {
+                    scrollTopBtn.classList.remove('visible');
+                }
+            });
+
+            scrollTopBtn.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+
+        });
+    </script>
+</body>
+</html>
